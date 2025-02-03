@@ -3,6 +3,7 @@ package co.danielzabalaing.services;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import net.serenitybdd.rest.SerenityRest;
 
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -10,7 +11,7 @@ public class DummyServices extends BaseTest{
 
     public Response getAllEmployees(){
 
-        Response response= RestAssured.given(spec)
+        Response response= SerenityRest.given(spec)
                 .contentType(ContentType.JSON)
                 .when()
                 .get("/objects");
@@ -23,7 +24,7 @@ public class DummyServices extends BaseTest{
 
     public Response getSpecifyEmployee ( String id){
 
-        Response response = RestAssured.given(spec)
+        Response response = SerenityRest.given(spec)
                 .contentType(ContentType.JSON)
                 .when()
                 .get("/objects/"+id);
@@ -38,7 +39,7 @@ public class DummyServices extends BaseTest{
 
     public String createNewEmployee(Object employee){
 
-        Response response = RestAssured.given(spec)
+        Response response = SerenityRest.given(spec)
                 .contentType(ContentType.JSON)
                 .when()
                 .body(employee)
@@ -64,7 +65,7 @@ public class DummyServices extends BaseTest{
 
     public Response deleteEmployee(String id){
 
-        Response response = RestAssured.given(spec)
+        Response response = SerenityRest.given(spec)
                 .contentType(ContentType.JSON)
                 .delete("/objects/"+id);
 
